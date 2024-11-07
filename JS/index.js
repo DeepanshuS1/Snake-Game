@@ -49,7 +49,7 @@ async function gameEngine() {
         }
         score = 0
         inputDir = {x:0,y:0}
-        alert("Game over press any key to play again")
+        alert("Game over press Enter key to play again")
         snakeArr = [{x:13,y:15}]
         score = 0
         musicSound.play()

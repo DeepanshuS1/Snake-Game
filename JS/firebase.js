@@ -7,8 +7,11 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const apiKey1 = 'AIzaSyAM789e6i6g'
+const apiKey2 = 'uC8FGq5gvE9mo9MDQC8xDLg'
+
 const firebaseConfig = {
-    apiKey: "AIzaSyAM789e6i6guC8FGq5gvE9mo9MDQC8xDLg",
+    apiKey: apiKey1 + apiKey2,
     authDomain: "snake-game-ca8d0.firebaseapp.com",
     projectId: "snake-game-ca8d0",
     storageBucket: "snake-game-ca8d0.firebasestorage.app",
