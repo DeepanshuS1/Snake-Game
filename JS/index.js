@@ -1,3 +1,5 @@
+import { createData,readData,highscore } from '/JS/firebase.js';
+
 let inputDir = { x: 0, y: 0 };
 const foodSound = new Audio('/music/food.mp3')
 const gameOverSound = new Audio('/music/gameover.mp3')
@@ -10,7 +12,7 @@ let snakeArr = [
     { x: 13, y: 15 }
 ]
 
-food = { x: 6, y: 16 }
+let food = { x: 6, y: 16 }
 
 // game Function
 function main(ctime) {
@@ -33,19 +35,23 @@ function isCollide(snake){
     }
 }
 
+async function gameEngine() {
+    // updating High Score
+    await readData()
 
-function gameEngine() {
     // updating the snake array
     if (isCollide(snakeArr)) {
         gameOverSound.play()
         musicSound.pause()
+        if(highscore < score){
+        let userName = prompt('You Beats the HighScore Enter your Name')
+        createData(score,userName)
+        }
         score = 0
         inputDir = {x:0,y:0}
         alert("Game over press any key to play again")
         snakeArr = [{x:13,y:15}]
         score = 0
-    }
-    else{
         musicSound.play()
     }
     
@@ -68,7 +74,7 @@ function gameEngine() {
     // Render the snake and food
     bord.innerHTML = ""
     snakeArr.forEach((e, index) => {
-        snakeElement = document.createElement('div')
+        let snakeElement = document.createElement('div')
         snakeElement.style.gridRowStart = e.y
         snakeElement.style.gridColumnStart = e.x
         if (index === 0) {
@@ -80,7 +86,7 @@ function gameEngine() {
     })
     
     scorebar.innerHTML = "Score: " + score;
-    foodElement = document.createElement('div')
+    let foodElement = document.createElement('div')
     foodElement.style.gridRowStart = food.y
     foodElement.style.gridColumnStart = food.x
     foodElement.classList.add('food')

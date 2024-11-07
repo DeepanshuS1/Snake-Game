@@ -41,12 +41,23 @@
     border-radius: 100%;
 }
 
-#scorebar{
+#scorebar,
+.highscore{
     position: absolute;
     top: 20px;
-    left: 150px;
+    left: 70px;
     font-size: 40px;
     font-weight: bold;
     color: violet;
     font-family: 'Courier New', Courier, monospace;
+}
+
+.highscore{
+    top:80px;
+    font-size: 1rem;
+    color: rgb(44, 44, 236);
+}
+
+.highscore span{
+    color: white;
 }
