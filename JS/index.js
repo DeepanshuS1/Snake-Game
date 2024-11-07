@@ -12,6 +12,19 @@ let snakeArr = [
     { x: 13, y: 15 }
 ]
 
+// hiding console
+document.addEventListener("contextmenu",function(event){
+    event.preventDefault();
+});
+document.addEventListener("keydown",function(event){
+    if(event.key === "F12"){
+        event.preventDefault();
+    }
+    if((event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J")) || (event.ctrlKey && event.key === "U")){
+        event.preventDefault();
+    }
+})
+
 let food = { x: 6, y: 16 }
 
 // game Function
