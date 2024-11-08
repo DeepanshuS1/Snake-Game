@@ -9,7 +9,7 @@ let speed = 4;
 let score = 0
 let lastPaintTime = 0;
 let snakeArr = [
-    { x: 5, y: 5 }
+    { x: Math.round(2 + (14 * Math.random())), y: Math.round(2 + (14 * Math.random())) }
 ]
 
 // hiding console
