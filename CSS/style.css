@@ -23,16 +23,18 @@
 }
 
 .head{
-    background-color: green;
+    background: url(/img/snakehead.png);
+    background-size: cover;
     border-radius: 30%;
     z-index: 2;
-    border: .25vmin solid whitesmoke;
+    scale: 1.25;
+    transition: all .1s;
 }
 
 .snake{
-    background-color: rgb(68, 255, 47);
-    border-radius: 40%;
-    border: .25vmin solid black;
+    background-color: rgb(36, 113, 28);
+    border-radius: 45%;
+    border: .20vmin solid black;
 }
 
 .food{
