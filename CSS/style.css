@@ -268,7 +268,7 @@
     }
 
     #scorebar {
-        font-size: 1.7rem;
+        font-size: 1.6rem;
         top: 30px;
     }
 
@@ -298,5 +298,19 @@
 
     .sidebtn{
         width: 50%;
+    }
+}
+
+@media (max-width: 380px){
+    #bord {
+        height: 22rem;
+        width: 20rem;
+        top: 5.5rem;
+        left: 4.5vw;
+    }
+
+    .buttons {
+        left: 35px;
+        bottom: -20px;
     }
 }
