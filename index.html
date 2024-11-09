@@ -6,16 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snake King</title>
     <link rel="stylesheet" href="CSS/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
     <div class="body">
         <div id="scorebar">Score: 0</div>
+        <button class="playMusic">Play Music</button>
         <div class="highscore">
             <h1>Global HighScore</h1>
             <h2>User: <span id="Username">None</span></h2>
             <h2>Score: <span id="UserScore">0</span></h2>
         </div>
         <div id="bord"></div>
+        <div class="buttons">
+            <button class="arrows" data-direction="Up"><i class='bx bx-up-arrow-alt'></i></button>
+            <div class="sidebtn">
+                <button class="arrows" data-direction="Left"><i class='bx bx-left-arrow-alt' ></i></button>
+                <button class="arrows" data-direction="Right"><i class='bx bx-right-arrow-alt' ></i></button>
+            </div>
+            <button class="arrows" data-direction="Down"><i class='bx bx-down-arrow-alt' ></i></button>
+        </div>
     </div>
     <script type="module" src="JS/firebase.js"></script>
     <script type="module" src="JS/index.js"></script>

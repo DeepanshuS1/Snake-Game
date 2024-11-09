@@ -1,18 +1,30 @@
-*{
+* {
     padding: 0;
     margin: 0;
 }
 
-.body{
+.body {
     background: url(/img/bg.jpg);
     min-height: 100vh;
-    background-size:  100vw 100vh;
+    background-size: 100vw 100vh;
     display: flex;
     justify-content: center;
+    z-index: 0;
     align-items: center;
 }
 
-#bord{
+.body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+#bord {
+    z-index: 1;
     background: linear-gradient(rgb(103, 103, 255), white);
     height: 92vmin;
     width: 90vmin;
@@ -22,7 +34,7 @@
     grid-template-columns: repeat(18, 1fr);
 }
 
-.head{
+.head {
     background: url(/img/snakehead.png);
     background-size: cover;
     border-radius: 30%;
@@ -31,35 +43,174 @@
     transition: all .1s;
 }
 
-.snake{
+.snake {
     background-color: rgb(36, 113, 28);
     border-radius: 45%;
     border: .20vmin solid black;
 }
 
-.food{
+.food {
     background: linear-gradient(yellow, orange);
     border: .25vmin solid white;
     border-radius: 100%;
 }
 
 #scorebar,
-.highscore{
+.highscore {
     position: absolute;
     top: 20px;
+    background-color: rgba(255, 255, 255, 0.912);
     left: 70px;
     font-size: 40px;
     font-weight: bold;
-    color: violet;
+    padding: .3rem;
+    border-radius: 1rem;
+    color: rgb(255, 63, 255);
     font-family: 'Courier New', Courier, monospace;
 }
 
-.highscore{
-    top:80px;
+.highscore {
+    top: 80px;
     font-size: 1rem;
     color: rgb(44, 44, 236);
 }
 
-.highscore span{
-    color: white;
+.highscore span {
+    color: rgb(0, 172, 20);
+}
+
+.playMusic {
+    position: absolute;
+    top: 100px;
+    right: 100px;
+    padding: .5rem;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.568), rgba(156, 155, 155, 0.256));
+    border: 2px solid white;
+    border-radius: 20px;
+    color: #0015ff;
+    font-weight: bold;
+    font-size: large;
+    cursor: pointer;
+}
+
+.buttons {
+    position: absolute;
+    right: 100px;
+    z-index: 4;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 20rem;
+    width: 20rem;
+}
+
+.sidebtn {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.arrows {
+    background-color: rgba(255, 255, 255, 0.561);
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+.arrows:hover {
+    scale: 1.01;
+    background-color: rgba(255, 255, 255, 0.727);
+}
+
+@media (max-width: 1355px) {
+    #scorebar,
+    .highscore{
+        left: 25px;
+    }
+}
+
+@media (max-width: 1255px) {
+    #scorebar,
+    .highscore{
+        left: 15px;
+    }
+    .highscore{
+        top: 100px;
+        font-size: .9rem;
+    }
+    
+    .playMusic {
+        top: 100px;
+    }
+}
+
+@media (max-width: 1150px) {
+    #bord{
+        height: 85vmin;
+        width: 80vmin;
+    }
+    .highscore{
+        font-size: .8rem;
+    }
+}
+
+@media (max-width: 1050px) {
+    #bord{
+        height: 30rem;
+        width: 30rem;
+    }
+    .highscore{
+        font-size: .7rem;
+    }
+}
+
+@media (max-width: 950px) {
+    #bord{
+        height: 25rem;
+        width: 25rem;
+    }
+    .highscore{
+        font-size: .7rem;
+    }
+
+    .playMusic {
+        top: 70px;
+        right: 70px;
+    }
+}
+
+@media (max-width: 850px) {
+    #bord{
+        height: 25rem;
+        width: 25rem;
+        position: absolute;
+        top: 6rem;
+        left: 10vw;
+    
+    }
+    .highscore{
+        font-size: .7rem;
+        top: 20px;
+        left: 60vw;
+    }
+
+    .playMusic {
+        top: 85vh;
+        right: 70px;
+    }
+
+    .buttons{
+        display: flex;
+        position: fixed;
+        bottom: -90px;
+        left: 80px;
+    }
+
+    .arrows{
+        font-size: 1.8rem;
+    }
+
+    .sidebtn{
+        width: 30%;
+    }
 }

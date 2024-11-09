@@ -5,7 +5,7 @@ const foodSound = new Audio('/music/food.mp3')
 const gameOverSound = new Audio('/music/gameover.aac')
 const movieSound = new Audio('/music/move.mp3')
 const musicSound = new Audio('/music/music.mp3')
-let speed = 4;
+let speed = 5;
 let score = 0
 let lastPaintTime = 0;
 let snakeArr = [
@@ -22,6 +22,19 @@ document.addEventListener("keydown", function (event) {
     }
     if ((event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J")) || (event.ctrlKey && event.key === "U")) {
         event.preventDefault();
+    }
+})
+
+let playbtn = document.querySelector('.playMusic');
+playbtn.addEventListener('click', () => {
+    if (playbtn.innerHTML === 'Play Music') {
+        musicSound.play();
+        playbtn.style.color = "Red"
+        playbtn.innerHTML = 'Pause Music'
+    } else {
+        musicSound.pause();
+        playbtn.style.color = "#0015ff"
+        playbtn.innerHTML = 'Play Music'
     }
 })
 
@@ -56,6 +69,8 @@ async function gameEngine() {
     if (isCollide(snakeArr)) {
         gameOverSound.play()
         musicSound.pause()
+        playbtn.style.color = "#0015ff"
+        playbtn.innerHTML = 'Play Music'
         if (highscore < score) {
             let userName = prompt('You Beats the HighScore Enter your Name')
             createData(score, userName)
@@ -65,7 +80,6 @@ async function gameEngine() {
         alert("Game over press Enter key to play again")
         snakeArr = [{ x: 13, y: 15 }]
         score = 0
-        musicSound.play()
     }
 
     // when snake its food
@@ -108,18 +122,17 @@ async function gameEngine() {
 
 const styleSheet = document.styleSheets;
 function rotateHead(angle) {
-        for (let rule of styleSheet[0].cssRules) {
-            if (rule.selectorText === '.head') {
-                rule.style.transform = `rotate(${angle}deg)`;
-            }
+    for (let rule of styleSheet[0].cssRules) {
+        if (rule.selectorText === '.head') {
+            rule.style.transform = `rotate(${angle}deg)`;
         }
+    }
 }
 
 // game Logic
 window.requestAnimationFrame(main)
 window.addEventListener('keydown', e => {
-    let rotationAngle = 0;
-    inputDir = { x: 0, y: 0 }
+    let rotationAngle;
     movieSound.play()
     switch (e.key) {
         case "ArrowUp":
@@ -147,3 +160,38 @@ window.addEventListener('keydown', e => {
     }
     rotateHead(rotationAngle)
 });
+
+// // running snake with arrow keys
+let arrowKeys = document.querySelectorAll('.arrows');
+
+arrowKeys.forEach(arrow => {
+    arrow.addEventListener('click', () => {
+        let rotationAngle;
+        movieSound.play()
+        switch (arrow.dataset.direction) {
+            case "Up":
+                rotationAngle = 180;
+                inputDir.x = 0
+                inputDir.y = -1
+                break;
+            case "Down":
+                rotationAngle = 0;
+                inputDir.x = 0
+                inputDir.y = 1
+                break;
+            case "Left":
+                rotationAngle = 90;
+                inputDir.x = -1
+                inputDir.y = 0
+                break;
+            case "Right":
+                rotationAngle = 270;
+                inputDir.x = 1
+                inputDir.y = 0
+                break;
+            default:
+                break;
+        }
+        rotateHead(rotationAngle) 
+    })
+})
