@@ -263,19 +263,6 @@
     #bord {
         height: 22rem;
         width: 22rem;
-        top: 7rem;
-        left: 6vw;
-    }
-
-    .buttons {
-        bottom: -70px;
-    }
-}
-
-@media (max-width: 390px) {
-    #bord {
-        height: 22rem;
-        width: 22rem;
         top: 5.5rem;
         left: 4.5vw;
     }
@@ -295,8 +282,8 @@
     }
 
     .buttons {
-        left: 20px;
-        bottom: -40px;
+        left: 30px;
+        bottom: -30px;
     }
 
     .playMusic {
