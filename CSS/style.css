@@ -115,6 +115,7 @@
     background-color: rgba(255, 255, 255, 0.561);
     font-size: 2.5rem;
     cursor: pointer;
+    border-radius: 10px;
 }
 
 .arrows:hover {
@@ -141,6 +142,7 @@
     
     .playMusic {
         top: 100px;
+        z-index: 5;
     }
 }
 
@@ -186,7 +188,6 @@
         position: absolute;
         top: 6rem;
         left: 10vw;
-    
     }
     .highscore{
         font-size: .7rem;
@@ -212,5 +213,91 @@
 
     .sidebtn{
         width: 30%;
+    }
+}
+
+@media (max-width: 500px){
+    #bord{
+        height: 24rem;
+        width: 24rem;
+        top: 6.5rem;
+        left: 8vw;
+    }
+
+    #scorebar{
+        font-size: 2rem;
+        top: 30px;
+    }
+
+    .highscore{
+        font-size: .55rem;
+        width: 11rem;
+        left: 50vw;
+    }
+
+    .playMusic{
+        right: 50px;
+    }
+
+    .buttons{
+        left: 0;
+    }
+
+    .arrows{
+        font-size: 2.3rem;
+    }
+
+    .sidebtn{
+        width: 40%;
+    }
+}
+
+@media (max-width: 430px){
+    #bord{
+        height: 22rem;
+        width: 22rem;
+        top: 7rem;
+        left: 6vw;
+    }
+
+    .buttons{
+        bottom: -70px;
+    }
+}
+
+@media (max-width: 390px){
+    #bord{
+        height: 22rem;
+        width: 20rem;
+        top: 5.5rem;
+        left: 4vw;
+    }
+    
+    #scorebar{
+        font-size: 1.7rem;
+        top: 30px;
+    }
+
+    .highscore{
+        left: 45vw;
+        width: 10rem;
+    }
+    
+    .highscore h1{
+        font-size: 1rem;
+    }
+
+    .buttons{
+        left: -50px;
+        bottom: -70px;
+    }
+
+    .playMusic{
+      right: 40px;
+      font-size: 1rem;
+    }
+
+    .arrows{
+        font-size: 2.5rem;
     }
 }
