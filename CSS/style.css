@@ -295,7 +295,7 @@
     }
 
     .buttons {
-        left: 10px;
+        left: 20px;
         bottom: -40px;
     }
 
@@ -310,6 +310,6 @@
     }
 
     .sidebtn{
-        width: 40%;
+        width: 50%;
     }
 }
