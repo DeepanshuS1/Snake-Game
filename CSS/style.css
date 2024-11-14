@@ -50,8 +50,9 @@
 }
 
 .food {
-    background: linear-gradient(yellow, orange);
-    border: .25vmin solid white;
+    background: url(/img/apple.png);
+    background-size: cover;
+    scale: 1.1;
     border-radius: 100%;
 }
 
