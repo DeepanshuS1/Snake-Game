@@ -56,6 +56,12 @@
     border-radius: 100%;
 }
 
+.specialfood{
+    border-radius: 100%;
+    background: linear-gradient(yellow, orange);
+    border: .25vmin solid white;
+}
+
 #scorebar,
 .highscore {
     position: absolute;

@@ -5,15 +5,18 @@ const foodSound = new Audio('/music/food.mp3')
 const gameOverSound = new Audio('/music/gameover.aac')
 const movieSound = new Audio('/music/move.mp3')
 const musicSound = new Audio('/music/music.mp3')
-let speed = 7;
-let score = 0
+let speed = 5;
+let score = 0;
+let updateScore = 1;
+let specialCount = true;
 let lastPaintTime = 0;
+let special = 0;
 let snakeArr = [
     { x: Math.round(2 + (14 * Math.random())), y: Math.round(2 + (14 * Math.random())) }
 ]
 
 // hiding console
-document.addEventListener("contextmenu",function(event){
+document.addEventListener("contextmenu", function (event) {
     event.preventDefault();
 });
 document.addEventListener("keydown", function (event) {
@@ -39,6 +42,7 @@ playbtn.addEventListener('click', () => {
 })
 
 let food = { x: Math.round(2 + (14 * Math.random())), y: Math.round(2 + (14 * Math.random())) }
+let specialfood = { x: Math.round(2 + (14 * Math.random())), y: Math.round(2 + (14 * Math.random())) }
 
 // game Function
 function main(ctime) {
@@ -87,7 +91,24 @@ async function gameEngine() {
         snakeArr.unshift({ x: snakeArr[0].x + inputDir.x, y: snakeArr[0].y + inputDir.y })
         food = { x: Math.round(2 + (14 * Math.random())), y: Math.round(2 + (14 * Math.random())) }
         foodSound.play()
-        score += 1;
+        score += updateScore;
+        if (special < 5 && specialCount) {
+            special++;
+        } 
+    }
+
+    // when snake eats special food
+    if (snakeArr[0].y === specialfood.y && snakeArr[0].x === specialfood.x){
+        foodSound.play()
+        updateScore = 2;
+        speed = 8;
+        specialCount = false;
+        special = 0;
+        setTimeout(() => {
+            updateScore = 1;
+            speed = 5;
+            specialCount = true;
+        }, 5000);
     }
 
     // moving the snake
@@ -118,6 +139,14 @@ async function gameEngine() {
     foodElement.style.gridColumnStart = food.x
     foodElement.classList.add('food')
     bord.appendChild(foodElement)
+
+    if (special === 5) {
+        let specialfoodElement = document.createElement('div')
+        specialfoodElement.style.gridRowStart = specialfood.y
+        specialfoodElement.style.gridColumnStart = specialfood.x
+        specialfoodElement.classList.add('specialfood')
+        bord.appendChild(specialfoodElement)
+    }
 }
 
 const styleSheet = document.styleSheets;
@@ -192,6 +221,6 @@ arrowKeys.forEach(arrow => {
             default:
                 break;
         }
-        rotateHead(rotationAngle) 
+        rotateHead(rotationAngle)
     })
 })
