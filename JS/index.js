@@ -101,14 +101,14 @@ async function gameEngine() {
     if (snakeArr[0].y === specialfood.y && snakeArr[0].x === specialfood.x){
         foodSound.play()
         updateScore = 2;
-        speed = 8;
+        speed = 7;
         specialCount = false;
         special = 0;
-        setTimeout(() => {
+        let endeff = setTimeout(() => {
             updateScore = 1;
             speed = 5;
             specialCount = true;
-        }, 5000);
+        }, 10000);
     }
 
     // moving the snake
@@ -224,3 +224,4 @@ arrowKeys.forEach(arrow => {
         rotateHead(rotationAngle)
     })
 })
+
