@@ -23,9 +23,9 @@ document.addEventListener("keydown", function (event) {
     if (event.key === "F12") {
         event.preventDefault();
     }
-    if ((event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J")) || (event.ctrlKey && event.key === "U")) {
-        event.preventDefault();
-    }
+    // if ((event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J")) || (event.ctrlKey && event.key === "U")) {
+    //     event.preventDefault();
+    // }
 })
 
 let playbtn = document.querySelector('.playMusic');
@@ -38,6 +38,21 @@ playbtn.addEventListener('click', () => {
         musicSound.pause();
         playbtn.style.color = "#0015ff"
         playbtn.innerHTML = 'Play Music'
+    }
+})
+let turboOn = false
+let turboBtn = document.querySelector('.turbo');
+turboBtn.addEventListener('click', ()=>{
+    if(turboBtn.innerHTML === 'Turbo Mode'){
+        turboBtn.innerHTML = 'Normal Mode';
+        document.documentElement.style.setProperty('--turboColor', 'rgb(0, 136, 255)')
+        speed = 10
+        turboOn = true;
+    }else{
+        speed = 5
+        turboBtn.innerHTML = 'Turbo Mode';
+        document.documentElement.style.setProperty('--turboColor', 'blueviolet')
+        turboOn = false
     }
 })
 
@@ -101,12 +116,12 @@ async function gameEngine() {
     if (snakeArr[0].y === specialfood.y && snakeArr[0].x === specialfood.x){
         foodSound.play()
         updateScore = 2;
-        speed = 7;
+        speed = turboOn ? speed : 7;
         specialCount = false;
         special = 0;
         let endeff = setTimeout(() => {
             updateScore = 1;
-            speed = 5;
+            speed = turboOn ? speed : 5;
             specialCount = true;
         }, 10000);
     }
