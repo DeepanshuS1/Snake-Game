@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
 import { getDatabase, set, get, ref } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js"
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -24,6 +25,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getDatabase(app);
+const auth = getAuth(app)
 
 export function createData(score, name) {
     set(ref(db, 'GameScore/'), {
@@ -43,3 +45,40 @@ export function readData() {
         highscore = data['HighScore']
     })
 }
+
+async function signup(email, password, username) {
+    try {
+        // Create user with email and password
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // Save user details in the database
+        await set(ref(db, `users/${user.uid}`), {
+            username: username,
+            email: email
+        });
+
+        alert('Signup successful!');
+    } catch (error) {
+        console.error('Error during signup:', error.message);
+        alert(error.message);
+    }
+}
+
+async function login(email, password) {
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        alert('Login successful!');
+    } catch (error) {
+        console.error('Error during login:', error.message);
+        alert(error.message);
+    }
+}
+
+
+signupbtn.addEventListener('click', ()=>{
+    signup(signEmail.value,signpassword.value,username.value);
+})
+loginbtn.addEventListener('click', ()=>{
+    login(loginEmail.value,loginpassword.value);
+})

@@ -15,6 +15,27 @@ let snakeArr = [
     { x: Math.round(2 + (14 * Math.random())), y: Math.round(2 + (14 * Math.random())) }
 ]
 
+let sbtn = document.querySelector('.signup')
+let lbtn = document.querySelector('.login')
+
+sbtn.addEventListener('click', (event)=>{
+    sbtn.style.backgroundColor = '#0015ff'
+    sbtn.style.color = 'white'
+    lbtn.style.backgroundColor = 'transparent'
+    lbtn.style.color = 'black'
+    loginform.style.display = 'none'
+    signupform.style.display = 'flex'
+})
+
+lbtn.addEventListener('click', (event)=>{
+    lbtn.style.backgroundColor = '#0015ff'
+    lbtn.style.color = 'white'
+    sbtn.style.backgroundColor = 'transparent'
+    sbtn.style.color = 'black'
+    loginform.style.display = 'flex'
+    signupform.style.display = 'none'
+})
+
 function speedUp(){
     if(turboBtn.innerHTML === 'Turbo Mode'){
         turboBtn.innerHTML = 'Normal Mode';
