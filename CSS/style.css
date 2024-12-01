@@ -172,6 +172,7 @@ body{
     border-radius: 3rem;
     box-shadow: 1px 1px 5px #0015ff,
     -1px -1px 5px #0015ff;
+    display: none;
 }
 
 .regbtns{
