@@ -165,8 +165,8 @@ body{
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    height: 25vmax;
-    width: 30vmax;
+    height: 35vmax;
+    width: 40vmax;
     padding: 1rem;
     overflow: hidden;
     border-radius: 3rem;

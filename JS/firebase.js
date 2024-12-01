@@ -15,6 +15,7 @@ const firebaseConfig = {
     apiKey: apiKey1 + apiKey2,
     authDomain: "snake-game-ca8d0.firebaseapp.com",
     projectId: "snake-game-ca8d0",
+    databaseURL: "https://snake-game-ca8d0-default-rtdb.firebaseio.com/",
     storageBucket: "snake-game-ca8d0.firebasestorage.app",
     messagingSenderId: "1033008392792",
     appId: "1:1033008392792:web:b6c941ef64db6cc88a382d",
