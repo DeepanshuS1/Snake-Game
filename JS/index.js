@@ -15,6 +15,20 @@ let snakeArr = [
     { x: Math.round(2 + (14 * Math.random())), y: Math.round(2 + (14 * Math.random())) }
 ]
 
+function speedUp(){
+    if(turboBtn.innerHTML === 'Turbo Mode'){
+        turboBtn.innerHTML = 'Normal Mode';
+        document.documentElement.style.setProperty('--turboColor', 'rgb(0, 136, 255)')
+        speed = 10
+        turboOn = true;
+    }else{
+        speed = 5
+        turboBtn.innerHTML = 'Turbo Mode';
+        document.documentElement.style.setProperty('--turboColor', 'blueviolet')
+        turboOn = false
+    }
+}
+
 // hiding console
 document.addEventListener("contextmenu", function (event) {
     event.preventDefault();
@@ -26,6 +40,9 @@ document.addEventListener("keydown", function (event) {
     // if ((event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J")) || (event.ctrlKey && event.key === "U")) {
     //     event.preventDefault();
     // }
+    if(event.key === 'T' || event.key === 't'){
+        speedUp()
+    } 
 })
 
 let playbtn = document.querySelector('.playMusic');
@@ -42,22 +59,10 @@ playbtn.addEventListener('click', () => {
 })
 let turboOn = false
 let turboBtn = document.querySelector('.turbo');
-turboBtn.addEventListener('click', ()=>{
-    if(turboBtn.innerHTML === 'Turbo Mode'){
-        turboBtn.innerHTML = 'Normal Mode';
-        document.documentElement.style.setProperty('--turboColor', 'rgb(0, 136, 255)')
-        speed = 10
-        turboOn = true;
-    }else{
-        speed = 5
-        turboBtn.innerHTML = 'Turbo Mode';
-        document.documentElement.style.setProperty('--turboColor', 'blueviolet')
-        turboOn = false
-    }
-})
+turboBtn.addEventListener('click', speedUp)
 
 let food = { x: Math.round(2 + (14 * Math.random())), y: Math.round(2 + (14 * Math.random())) }
-let specialfood = { x: Math.round(2 + (14 * Math.random())), y: Math.round(2 + (14 * Math.random())) }
+let specialfood = { x: Math.round(2 + (14 * Math.random())), y: Math.round(2 + (14 * Math.random()))}
 
 // game Function
 function main(ctime) {
@@ -88,6 +93,7 @@ async function gameEngine() {
     if (isCollide(snakeArr)) {
         gameOverSound.play()
         musicSound.pause()
+        special = 0;
         playbtn.style.color = "#0015ff"
         playbtn.innerHTML = 'Play Music'
         if (highscore < score) {
@@ -109,12 +115,14 @@ async function gameEngine() {
         score += updateScore;
         if (special < 5 && specialCount) {
             special++;
+            special == 5 ? specialfood = { x: Math.round(2 + (14 * Math.random())), y: Math.round(2 + (14 * Math.random()))} : specialfood = {x:0, y:0}
         } 
     }
 
     // when snake eats special food
     if (snakeArr[0].y === specialfood.y && snakeArr[0].x === specialfood.x){
         foodSound.play()
+        specialfood = {x: 0, y:0}
         updateScore = 2;
         speed = turboOn ? speed : 7;
         specialCount = false;
@@ -239,4 +247,3 @@ arrowKeys.forEach(arrow => {
         rotateHead(rotationAngle)
     })
 })
-

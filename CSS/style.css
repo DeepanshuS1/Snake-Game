@@ -141,7 +141,7 @@
     -1px -1px 5px var(--turboColor) inset;
     top: auto;
     right: auto;
-    left: 3rem;
+    left: 2.5rem;
     bottom: 2rem;
     position: fixed;
     z-index: 10;
@@ -184,7 +184,7 @@
     }
 
     .highscore {
-        font-size: .8rem;
+        font-size: .75rem;
     }
 }
 
@@ -265,7 +265,7 @@
     }
 
     .highscore {
-        font-size: .55rem;
+        font-size: .5rem;
         width: 11rem;
         left: 50vw;
     }
