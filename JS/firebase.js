@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getDatabase, set, get, ref } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js"
+import { getDatabase, set, get, ref,child } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js"
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -47,6 +47,8 @@ export function readData() {
     })
 }
 
+const register = document.querySelector(".register")
+
 async function signup(email, password, username) {
     try {
         // Create user with email and password
@@ -77,9 +79,34 @@ async function login(email, password) {
 }
 
 
-signupbtn.addEventListener('click', ()=>{
+signupbtn.addEventListener('click', (event)=>{
+    event.preventDefault()
     signup(signEmail.value,signpassword.value,username.value);
 })
-loginbtn.addEventListener('click', ()=>{
+loginbtn.addEventListener('click', (event)=>{
+    event.preventDefault()
     login(loginEmail.value,loginpassword.value);
 })
+
+export let playerName;
+
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        register.style.display = 'none'
+
+        // Fetch user details from Realtime Database
+        get(child(ref(db), `users/${user.uid}`))
+            .then(snapshot => {
+                if (snapshot.exists()) {
+                    playerName = snapshot.val()['username']
+                } else {
+                    console.log('No user data found!');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching user data:', error);
+            });
+    } else {
+        register.style.display = 'flex'
+    }
+});

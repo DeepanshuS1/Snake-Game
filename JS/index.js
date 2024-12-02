@@ -1,4 +1,4 @@
-import { createData, readData, highscore } from '/JS/firebase.js';
+import { createData, readData, highscore, playerName } from '/JS/firebase.js';
 
 let inputDir = { x: 0, y: 0 };
 const foodSound = new Audio('/music/food.mp3')
@@ -18,7 +18,7 @@ let snakeArr = [
 let sbtn = document.querySelector('.signup')
 let lbtn = document.querySelector('.login')
 
-sbtn.addEventListener('click', (event)=>{
+sbtn.addEventListener('click', (event) => {
     sbtn.style.backgroundColor = '#0015ff'
     sbtn.style.color = 'white'
     lbtn.style.backgroundColor = 'transparent'
@@ -27,7 +27,7 @@ sbtn.addEventListener('click', (event)=>{
     signupform.style.display = 'flex'
 })
 
-lbtn.addEventListener('click', (event)=>{
+lbtn.addEventListener('click', (event) => {
     lbtn.style.backgroundColor = '#0015ff'
     lbtn.style.color = 'white'
     sbtn.style.backgroundColor = 'transparent'
@@ -36,13 +36,13 @@ lbtn.addEventListener('click', (event)=>{
     signupform.style.display = 'none'
 })
 
-function speedUp(){
-    if(turboBtn.innerHTML === 'Turbo Mode'){
+function speedUp() {
+    if (turboBtn.innerHTML === 'Turbo Mode') {
         turboBtn.innerHTML = 'Normal Mode';
         document.documentElement.style.setProperty('--turboColor', 'rgb(0, 136, 255)')
         speed = 10
         turboOn = true;
-    }else{
+    } else {
         speed = 5
         turboBtn.innerHTML = 'Turbo Mode';
         document.documentElement.style.setProperty('--turboColor', 'blueviolet')
@@ -61,9 +61,9 @@ document.addEventListener("keydown", function (event) {
     // if ((event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J")) || (event.ctrlKey && event.key === "U")) {
     //     event.preventDefault();
     // }
-    if(event.key === 'T' || event.key === 't'){
+    if (event.key === 'T' || event.key === 't') {
         speedUp()
-    } 
+    }
 })
 
 let playbtn = document.querySelector('.playMusic');
@@ -83,7 +83,7 @@ let turboBtn = document.querySelector('.turbo');
 turboBtn.addEventListener('click', speedUp)
 
 let food = { x: Math.round(2 + (14 * Math.random())), y: Math.round(2 + (14 * Math.random())) }
-let specialfood = { x: Math.round(2 + (14 * Math.random())), y: Math.round(2 + (14 * Math.random()))}
+let specialfood = { x: Math.round(2 + (14 * Math.random())), y: Math.round(2 + (14 * Math.random())) }
 
 // game Function
 function main(ctime) {
@@ -118,7 +118,7 @@ async function gameEngine() {
         playbtn.style.color = "#0015ff"
         playbtn.innerHTML = 'Play Music'
         if (highscore < score) {
-            let userName = prompt('You Beats the HighScore Enter your Name')
+            let userName = playerName;
             createData(score, userName)
         }
         score = 0
@@ -136,14 +136,14 @@ async function gameEngine() {
         score += updateScore;
         if (special < 5 && specialCount) {
             special++;
-            special == 5 ? specialfood = { x: Math.round(2 + (14 * Math.random())), y: Math.round(2 + (14 * Math.random()))} : specialfood = {x:0, y:0}
-        } 
+            special == 5 ? specialfood = { x: Math.round(2 + (14 * Math.random())), y: Math.round(2 + (14 * Math.random())) } : specialfood = { x: 0, y: 0 }
+        }
     }
 
     // when snake eats special food
-    if (snakeArr[0].y === specialfood.y && snakeArr[0].x === specialfood.x){
+    if (snakeArr[0].y === specialfood.y && snakeArr[0].x === specialfood.x) {
         foodSound.play()
-        specialfood = {x: 0, y:0}
+        specialfood = { x: 0, y: 0 }
         updateScore = 2;
         speed = turboOn ? speed : 7;
         specialCount = false;
@@ -206,27 +206,30 @@ function rotateHead(angle) {
 window.requestAnimationFrame(main)
 window.addEventListener('keydown', e => {
     let rotationAngle;
-    movieSound.play()
     switch (e.key) {
         case "ArrowUp":
             rotationAngle = 180;
             inputDir.x = 0
             inputDir.y = -1
+            movieSound.play()
             break;
         case "ArrowDown":
             rotationAngle = 0;
             inputDir.x = 0
             inputDir.y = 1
+            movieSound.play()
             break;
         case "ArrowLeft":
             rotationAngle = 90;
             inputDir.x = -1
             inputDir.y = 0
+            movieSound.play()
             break;
         case "ArrowRight":
             rotationAngle = 270;
             inputDir.x = 1
             inputDir.y = 0
+            movieSound.play()
             break;
         default:
             break;
