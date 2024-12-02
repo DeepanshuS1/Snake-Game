@@ -165,7 +165,7 @@ body {
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    height: 35vmax;
+    height: 33vmax;
     width: 40vmax;
     padding: 1rem;
     overflow: hidden;
@@ -333,7 +333,7 @@ form button {
 
     .register {
         height: 50vmax;
-        width: 50vmax;
+        width: 47vmax;
     }
 
     .sidebtn {
