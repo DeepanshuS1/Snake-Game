@@ -313,8 +313,6 @@ form button {
 
     body {
         flex-direction: column;
-        justify-content: space-between;
-        padding: 10px 0;
     }
 
     .highscore {
@@ -397,10 +395,10 @@ form button {
     
     .profilepart,
     .gamefunctions {
-        height: 7vh;
+        height: 6vh;
     }
 
     .gamebord {
-        height: 80vh;
+        height: 75vh;
     }
 }
