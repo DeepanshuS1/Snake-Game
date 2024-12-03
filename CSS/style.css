@@ -1,26 +1,20 @@
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.body {
     background: url(/img/bg.jpg);
-    min-height: 100vh;
+    height: 100vh;
     width: 100vw;
     background-size: 100vw 100vh;
-    display: flex;
-    justify-content: center;
-    z-index: 0;
-    align-items: center;
 }
 
-.body::before {
+body::before {
     content: '';
     position: absolute;
     top: 0;
@@ -33,8 +27,8 @@ body {
 #bord {
     z-index: 1;
     background: linear-gradient(rgb(103, 103, 255), white);
-    height: 92vmin;
-    width: 90vmin;
+    height: max(42vw, 72vh);
+    width: max(42vw, 72vh);
     border: 2px solid black;
     display: grid;
     grid-template-rows: repeat(18, 1fr);
@@ -69,12 +63,61 @@ body {
     border: .25vmin solid white;
 }
 
-#scorebar,
-.highscore {
-    position: absolute;
-    top: 20px;
+.profilepart,
+.gamefunctions{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 22%;
+    height: 100%;
+    border-radius: 2rem;
+    background-color: rgba(0, 0, 0, 0.086);
+}
+
+.gamebord{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+    width: calc(100% - 2*(22%));
+}
+
+.proficon,
+.rankicon{
+    background-color: rgb(255, 255, 255);
+    padding: .3rem;
+    display: flex;
+    align-items: center;
+    border-radius: 1rem;
+    z-index: 2;
+    justify-content: center;
+    width: 70%;
+    cursor: pointer;
+    font-size: 1.7rem;
+    color: #b400ff;
+    gap: 10px;
+}
+
+.proficon i{
+    color: rgb(255, 53, 53);
+}
+.rankicon i{
+    color: gold;
+}
+
+.profilepart >h1{
+    color: #40bc28;
+    background-color: lightyellow;
+    z-index: 2;
+    padding: .2rem;
+    border-radius: 5px 10px;
+}
+
+.highscore,
+.scoredesign{
+    z-index: 2;
     background-color: rgba(255, 255, 255, 0.912);
-    left: 60px;
     font-size: 40px;
     font-weight: bold;
     padding: .3rem;
@@ -83,10 +126,29 @@ body {
     font-family: 'Courier New', Courier, monospace;
 }
 
+#bestsbar{
+    font-size: 2rem;
+    color: #b400ff;
+}
+
 .highscore {
-    top: 80px;
+    position: relative;
     font-size: 1rem;
     color: rgb(44, 44, 236);
+}
+
+.bordcross{
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    padding: .2rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+    position: absolute;
+    left: 45%;
+    bottom: 10px;
+    display: none !important;
+    border-radius: 50%;
 }
 
 .highscore span {
@@ -96,27 +158,22 @@ body {
 .playMusic,
 .turbo {
     cursor: pointer;
-    position: absolute;
-    top: 100px;
-    right: 100px;
     padding: .5rem;
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.568), rgba(156, 155, 155, 0.256));
+    background-color: rgba(255, 255, 255, 0.815);
     border: 2px solid white;
     border-radius: 20px;
     color: #0015ff;
     font-weight: bold;
     font-size: large;
+    z-index: 2;
 }
 
 .buttons {
-    position: absolute;
-    right: 100px;
     z-index: 4;
     display: none;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 20rem;
     width: 20rem;
 }
 
@@ -146,11 +203,6 @@ body {
     color: var(--turboColor);
     box-shadow: 1px 1px 5px var(--turboColor) inset,
         -1px -1px 5px var(--turboColor) inset;
-    top: auto;
-    right: auto;
-    left: 2.5rem;
-    bottom: 2rem;
-    position: fixed;
     z-index: 10;
     filter: contrast(3);
     transition: all .3s ease;
@@ -236,199 +288,80 @@ form button {
     display: none;
 }
 
-@media (max-width: 1355px) {
-
-    #scorebar,
-    .highscore {
-        left: 25px;
-    }
-}
-
-@media (max-width: 1255px) {
-
-    #scorebar,
-    .highscore {
-        left: 15px;
-    }
-
-    .highscore {
-        top: 100px;
-        font-size: .9rem;
-    }
-
-    .playMusic {
-        top: 100px;
-        z-index: 5;
-    }
-}
-
-@media (max-width: 1150px) {
-    #bord {
-        height: 85vmin;
-        width: 80vmin;
-    }
-
-    .highscore {
-        font-size: .75rem;
-    }
-}
-
-@media (max-width: 1050px) {
-    #bord {
-        height: 30rem;
-        width: 30rem;
-    }
-
-    .highscore {
-        font-size: .7rem;
-    }
-}
-
-@media (max-width: 950px) {
-    #bord {
-        height: 25rem;
-        width: 25rem;
-    }
-
-    .highscore {
-        font-size: .7rem;
-    }
-
-    .playMusic {
-        top: 70px;
-        right: 70px;
-    }
-}
-
 @media (max-width: 850px) {
-    #bord {
-        height: 25rem;
-        width: 25rem;
-        position: absolute;
-        top: 6rem;
-        left: 10vw;
-    }
-
-    .highscore {
-        font-size: .7rem;
-        top: 20px;
-        left: 60vw;
-    }
-
-    .playMusic {
-        top: 85vh;
-        right: 70px;
-    }
-
-    .buttons {
-        display: flex;
-        position: fixed;
-        bottom: -90px;
-        left: 80px;
-    }
-
-    .arrows {
-        font-size: 1.8rem;
-    }
-
     .register {
         height: 53vmax;
         width: 43vmax;
     }
 
-    .sidebtn {
-        width: 30%;
-    }
-}
-
-@media (max-width: 500px) {
-    #bord {
-        height: 24rem;
-        width: 24rem;
-        top: 6.5rem;
-        left: 8vw;
+    body{
+        flex-direction: column;
     }
 
-    #scorebar {
-        font-size: 2rem;
-        top: 30px;
-    }
-
-    .highscore {
-        font-size: .5rem;
-        width: 11rem;
-        left: 50vw;
-    }
-
-    .playMusic {
-        right: 50px;
-    }
-
-    .buttons {
-        left: 0;
-    }
-
-    .arrows {
-        font-size: 2.3rem;
-    }
-
-    .sidebtn {
-        width: 40%;
-    }
-}
-
-@media (max-width: 430px) {
-    #bord {
-        height: 22rem;
-        width: 22rem;
-        top: 5.5rem;
-        left: 4.5vw;
-    }
-
-    #scorebar {
-        font-size: 1.6rem;
-        top: 30px;
-    }
-
-    .highscore {
-        left: 45vw;
-        width: 10rem;
-    }
-
-    .highscore h1 {
-        font-size: 1rem;
-    }
-
-    .buttons {
-        left: 40px;
-        bottom: -20px;
-    }
-
-    .playMusic {
-        top: 84vh;
-        right: 30px;
-        font-size: 1rem;
-    }
-
-    .arrows {
-        font-size: 2.8rem;
-    }
-
-    .sidebtn {
-        width: 50%;
-    }
-}
-
-@media (max-width: 380px) {
-    #bord {
-        height: 22rem;
+    .highscore{
+        display: none;
+        position: fixed;
         width: 20rem;
-        top: 5.5rem;
-        left: 4.5vw;
+        height: 10rem;
+        top: 20%;
+    }
+
+    .show{
+        display: block;
+    }
+
+    .bordcross{
+        display: block !important;
+    }
+
+    .scoredesign,
+    .profilepart>h1{
+        font-size: 1.4rem !important;
+    }
+
+    .rankicon,
+    .proficon{
+        width: auto;
+    } 
+
+    .rankicon span,
+    .proficon span{
+        display: none;
+    }
+
+    .arrows{
+        font-size: 2rem;
+    }
+
+    #bord{
+        height: 60vh;
+        width: 60vh;
+    }
+
+    .profilepart,
+    .gamefunctions{
+        flex-direction: row;
+        width: 100%;
+        height: 10%;
+    }
+
+    .gamebord{
+        flex-direction: column;
     }
 
     .buttons {
-        left: 30px;
-        bottom: -20px;
+        display: flex;
     }
+}
+
+@media (max-width: 525px){
+    .scoredesign,
+    .profilepart>h1{
+        font-size: 1.1rem !important;
+    }
+
+    .rankicon,
+    .proficon{
+        font-size: 1rem;
+    } 
 }

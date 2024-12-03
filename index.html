@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,25 +9,35 @@
     <link rel="stylesheet" href="CSS/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+
 <body>
-    <button class="turbo">Turbo Mode</button>
-    <div class="body">
-        <div id="scorebar">Score: 0</div>
-        <button class="playMusic">Play Music</button>
+    <div class="profilepart">
+        <h1 id="player">User</h1>
+        <div id="scorebar" class="scoredesign">Score:0</div>
+        <div id="bestsbar" class="scoredesign"> Best Score:0</div>
         <div class="highscore">
+            <i class='bx bx-x bordcross'></i>
             <h1>Global HighScore</h1>
             <h2>User: <span id="Username">None</span></h2>
             <h2>Score: <span id="UserScore">0</span></h2>
         </div>
+        <h3 class="rankicon" id="leaderbord"><i class='bx bxs-trophy'></i><span>Leaderbord</span></h3>
+        <h3 class="proficon" id="profile"><i class='bx bx-user-circle'></i><span>Profile</span></h3>
+    </div>
+    <div class="gamebord">
         <div id="bord"></div>
         <div class="buttons">
             <button class="arrows" data-direction="Up"><i class='bx bx-up-arrow-alt'></i></button>
             <div class="sidebtn">
-                <button class="arrows" data-direction="Left"><i class='bx bx-left-arrow-alt' ></i></button>
-                <button class="arrows" data-direction="Right"><i class='bx bx-right-arrow-alt' ></i></button>
+                <button class="arrows" data-direction="Left"><i class='bx bx-left-arrow-alt'></i></button>
+                <button class="arrows" data-direction="Right"><i class='bx bx-right-arrow-alt'></i></button>
             </div>
-            <button class="arrows" data-direction="Down"><i class='bx bx-down-arrow-alt' ></i></button>
+            <button class="arrows" data-direction="Down"><i class='bx bx-down-arrow-alt'></i></button>
         </div>
+    </div>
+    <div class="gamefunctions">
+        <button class="playMusic">Play Music</button>
+        <button class="turbo">Turbo Mode</button>
     </div>
     <div class="register">
         <div class="regbtns">
@@ -55,6 +66,7 @@
 
     <!-- Adding adsens -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8764954822112651"
-    crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

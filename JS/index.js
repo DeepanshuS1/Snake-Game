@@ -1,4 +1,4 @@
-import { createData, readData, highscore, playerName } from '/JS/firebase.js';
+import { createData, readData, highscore, playerName, playerscore, games, updateBestScore} from '/JS/firebase.js';
 
 let inputDir = { x: 0, y: 0 };
 const foodSound = new Audio('/music/food.mp3')
@@ -36,6 +36,7 @@ lbtn.addEventListener('click', (event) => {
     signupform.style.display = 'none'
 })
 
+// Turbo button Function
 function speedUp() {
     if (turboBtn.innerHTML === 'Turbo Mode') {
         turboBtn.innerHTML = 'Normal Mode';
@@ -47,6 +48,19 @@ function speedUp() {
         turboBtn.innerHTML = 'Turbo Mode';
         document.documentElement.style.setProperty('--turboColor', 'blueviolet')
         turboOn = false
+    }
+}
+
+// Play button Function
+function playbgmusic() {
+    if (playbtn.innerHTML === 'Play Music') {
+        musicSound.play();
+        playbtn.style.color = "Red"
+        playbtn.innerHTML = 'Pause Music'
+    } else {
+        musicSound.pause();
+        playbtn.style.color = "#0015ff"
+        playbtn.innerHTML = 'Play Music'
     }
 }
 
@@ -64,20 +78,13 @@ document.addEventListener("keydown", function (event) {
     if (event.key === 'T' || event.key === 't') {
         speedUp()
     }
+    if (event.key === 'M' || event.key === 'm') {
+        playbgmusic()
+    }
 })
 
 let playbtn = document.querySelector('.playMusic');
-playbtn.addEventListener('click', () => {
-    if (playbtn.innerHTML === 'Play Music') {
-        musicSound.play();
-        playbtn.style.color = "Red"
-        playbtn.innerHTML = 'Pause Music'
-    } else {
-        musicSound.pause();
-        playbtn.style.color = "#0015ff"
-        playbtn.innerHTML = 'Play Music'
-    }
-})
+playbtn.addEventListener('click', playbgmusic)
 let turboOn = false
 let turboBtn = document.querySelector('.turbo');
 turboBtn.addEventListener('click', speedUp)
@@ -117,9 +124,11 @@ async function gameEngine() {
         special = 0;
         playbtn.style.color = "#0015ff"
         playbtn.innerHTML = 'Play Music'
+        if (playerscore < score) {
+            updateBestScore(score)
+        }
         if (highscore < score) {
-            let userName = playerName;
-            createData(score, userName)
+            createData(score, playerName)
         }
         score = 0
         inputDir = { x: 0, y: 0 }
@@ -177,7 +186,7 @@ async function gameEngine() {
         bord.appendChild(snakeElement)
     })
 
-    scorebar.innerHTML = "Score: " + score;
+    scorebar.innerHTML = "Score:" + score;
     let foodElement = document.createElement('div')
     foodElement.style.gridRowStart = food.y
     foodElement.style.gridColumnStart = food.x
@@ -201,7 +210,6 @@ function rotateHead(angle) {
         }
     }
 }
-
 // game Logic
 window.requestAnimationFrame(main)
 window.addEventListener('keydown', e => {
@@ -270,4 +278,16 @@ arrowKeys.forEach(arrow => {
         }
         rotateHead(rotationAngle)
     })
+})
+
+// Display Leaderbord
+
+let leader = document.querySelector('.highscore')
+let crossbtn = document.querySelector('.bordcross')
+
+leaderbord.addEventListener('click', ()=>{
+    leader.classList.toggle('show')
+})
+crossbtn.addEventListener('click', ()=>{
+    leader.classList.toggle('show')
 })

@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getDatabase, set, get, ref,child } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js"
+import { getDatabase, set, get, ref, child, update } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js"
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -36,16 +36,8 @@ export function createData(score, name) {
 }
 
 export let highscore;
-
-export function readData() {
-    const dataref = ref(db, 'GameScore');
-    get(dataref).then((snapshot) => {
-        let data = snapshot.val()
-        document.getElementById('Username').innerHTML = data['user']
-        document.getElementById('UserScore').innerHTML = data['HighScore']
-        highscore = data['HighScore']
-    })
-}
+export let playerscore;
+export let games;
 
 const register = document.querySelector(".register")
 
@@ -58,7 +50,9 @@ async function signup(email, password, username) {
         // Save user details in the database
         await set(ref(db, `users/${user.uid}`), {
             username: username,
-            email: email
+            email: email,
+            score: 0,
+            games: 0
         });
 
         alert('Signup successful!');
@@ -89,16 +83,17 @@ loginbtn.addEventListener('click', (event)=>{
 })
 
 export let playerName;
-
+let userid;
 onAuthStateChanged(auth, (user) => {
     if (user) {
         register.style.display = 'none'
-
+        userid = user.uid
         // Fetch user details from Realtime Database
         get(child(ref(db), `users/${user.uid}`))
             .then(snapshot => {
                 if (snapshot.exists()) {
-                    playerName = snapshot.val()['username']
+                   playerName = snapshot.val()['username']
+                   player.innerHTML = playerName 
                 } else {
                     console.log('No user data found!');
                 }
@@ -110,3 +105,28 @@ onAuthStateChanged(auth, (user) => {
         register.style.display = 'flex'
     }
 });
+
+export function readData() {
+    const dataref = ref(db, 'GameScore');
+    const playerdata = ref(db, 'users');
+    get(dataref).then((snapshot) => {
+        let data = snapshot.val()
+        document.getElementById('Username').innerHTML = data['user']
+        document.getElementById('UserScore').innerHTML = data['HighScore']
+        highscore = data['HighScore']
+    })
+    get(playerdata).then((snapshot) => {
+        let data = snapshot.val()
+        playerscore  = data[userid]['score']
+        bestsbar.innerHTML = 'Best Score:' + playerscore
+        games  = data[userid]['games']
+    })
+}
+
+export function updateBestScore(val){
+    const updated = {
+        ['score']: val
+    };
+
+    update(ref(db, `users/${userid}`), updated)
+}
