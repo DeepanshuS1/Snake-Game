@@ -399,10 +399,6 @@ form button {
 
     .profilepart,
     .gamefunctions {
-        height: 8%;
-    }
-
-    .gamebord{
-        height: calc(100% - 30%);
+        height: 5%;
     }
 }
