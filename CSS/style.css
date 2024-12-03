@@ -366,35 +366,39 @@ form button {
         height: calc(100% - 20%);
         flex-direction: column;
     }
-
+    
     .buttons {
         display: flex;
     }
 }
 
 @media (max-width: 525px) {
-
+    
     .scoredesign,
     .profilepart>h1 {
         font-size: .8rem !important;
     }
-
+    
     .rankicon,
     .proficon {
         font-size: 1rem;
     }
-
+    
     #bord {
-        height: 50vh;
-        width: 50vh;
+        height: 47vh;
+        width: 47vh;
     }
 
     .arrows {
         font-size: 2.3rem;
     }
-
+    
     .profilepart,
     .gamefunctions {
         height: 8%;
+    }
+
+    .gamebord {
+        height: calc(100% - 16%);
     }
 }
