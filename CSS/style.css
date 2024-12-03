@@ -358,7 +358,7 @@ form button {
     .profilepart,
     .gamefunctions {
         flex-direction: row;
-        width: 100%;
+        width: 100vw;
         height: 10%;
     }
 
@@ -395,10 +395,10 @@ form button {
     
     .profilepart,
     .gamefunctions {
-        height: 8%;
+        height: 10vh;
     }
 
     .gamebord {
-        height: calc(100% - 16%);
+        height: 80vh;
     }
 }
