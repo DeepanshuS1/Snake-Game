@@ -358,12 +358,12 @@ form button {
     .profilepart,
     .gamefunctions {
         flex-direction: row;
-        width: 100vw;
-        height: 10%;
+        width: 99vw;
+        height: 5vh;
     }
 
     .gamebord {
-        height: calc(100% - 20%);
+        height: calc(100% - 10vh);
         flex-direction: column;
     }
     
