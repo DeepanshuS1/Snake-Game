@@ -395,10 +395,10 @@ form button {
     
     .profilepart,
     .gamefunctions {
-        height: 10vh;
+        height: 5vh;
     }
 
     .gamebord {
-        height: 80vh;
+        height: 70vh;
     }
 }
