@@ -403,6 +403,6 @@ form button {
     }
 
     .gamebord{
-        height: calc(100% - 16%);
+        height: calc(100% - 30%);
     }
 }
