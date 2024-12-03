@@ -313,6 +313,7 @@ form button {
 
     body {
         flex-direction: column;
+        height: 92vh;
     }
 
     .highscore {
@@ -388,17 +389,21 @@ form button {
         height: 47vh;
         width: 47vh;
     }
-
+    
     .arrows {
-        font-size: 2.3rem;
+        font-size: 2.5rem;
+    }
+    
+    .buttons {
+        width: 21rem;
     }
     
     .profilepart,
     .gamefunctions {
         height: 6vh;
     }
-
+    
     .gamebord {
-        height: 75vh;
+        height: 80vh;
     }
 }
