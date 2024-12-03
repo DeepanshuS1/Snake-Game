@@ -291,3 +291,7 @@ leaderbord.addEventListener('click', ()=>{
 crossbtn.addEventListener('click', ()=>{
     leader.classList.toggle('show')
 })
+
+profile.addEventListener('click', ()=>{
+    alert('Feature Coming Soon')
+})

@@ -64,7 +64,7 @@ body::before {
 }
 
 .profilepart,
-.gamefunctions{
+.gamefunctions {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -75,7 +75,7 @@ body::before {
     background-color: rgba(0, 0, 0, 0.086);
 }
 
-.gamebord{
+.gamebord {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -84,7 +84,7 @@ body::before {
 }
 
 .proficon,
-.rankicon{
+.rankicon {
     background-color: rgb(255, 255, 255);
     padding: .3rem;
     display: flex;
@@ -92,21 +92,22 @@ body::before {
     border-radius: 1rem;
     z-index: 2;
     justify-content: center;
-    width: 70%;
+    width: 75%;
     cursor: pointer;
     font-size: 1.7rem;
     color: #b400ff;
     gap: 10px;
 }
 
-.proficon i{
+.proficon i {
     color: rgb(255, 53, 53);
 }
-.rankicon i{
+
+.rankicon i {
     color: gold;
 }
 
-.profilepart >h1{
+.profilepart>h1 {
     color: #40bc28;
     background-color: lightyellow;
     z-index: 2;
@@ -115,7 +116,7 @@ body::before {
 }
 
 .highscore,
-.scoredesign{
+.scoredesign {
     z-index: 2;
     background-color: rgba(255, 255, 255, 0.912);
     font-size: 40px;
@@ -126,7 +127,7 @@ body::before {
     font-family: 'Courier New', Courier, monospace;
 }
 
-#bestsbar{
+#bestsbar {
     font-size: 2rem;
     color: #b400ff;
 }
@@ -137,7 +138,7 @@ body::before {
     color: rgb(44, 44, 236);
 }
 
-.bordcross{
+.bordcross {
     border: 1px solid black;
     background-color: white;
     color: black;
@@ -288,17 +289,33 @@ form button {
     display: none;
 }
 
+@media (max-width: 1250px) {
+    .highscore{
+        font-size: .8rem;
+    }
+    
+    #scorebar,
+    #bestsbar{
+        font-size: 1.7rem;
+    }
+
+    .rankicon,
+    .proficon {
+        font-size: 1.4rem;
+    }
+}
+
 @media (max-width: 850px) {
     .register {
         height: 53vmax;
         width: 43vmax;
     }
 
-    body{
+    body {
         flex-direction: column;
     }
 
-    .highscore{
+    .highscore {
         display: none;
         position: fixed;
         width: 20rem;
@@ -306,46 +323,51 @@ form button {
         top: 20%;
     }
 
-    .show{
+    .show {
         display: block;
     }
 
-    .bordcross{
+    .bordcross {
         display: block !important;
     }
 
     .scoredesign,
-    .profilepart>h1{
+    .profilepart>h1 {
         font-size: 1.4rem !important;
     }
 
     .rankicon,
-    .proficon{
+    .proficon {
         width: auto;
-    } 
+    }
 
     .rankicon span,
-    .proficon span{
+    .proficon span {
         display: none;
     }
 
-    .arrows{
+    .arrows {
         font-size: 2rem;
     }
 
-    #bord{
+    #bord {
         height: 60vh;
         width: 60vh;
     }
 
     .profilepart,
-    .gamefunctions{
+    .gamefunctions {
         flex-direction: row;
         width: 100%;
         height: 10%;
     }
 
-    .gamebord{
+    .gamebord {
+        width: 100%;
+        height: calc(100% - 20%);
+    }
+
+    .gamebord {
         flex-direction: column;
     }
 
@@ -354,23 +376,33 @@ form button {
     }
 }
 
-@media (max-width: 525px){
+@media (max-width: 525px) {
+
     .scoredesign,
-    .profilepart>h1{
+    .profilepart>h1 {
         font-size: .8rem !important;
     }
 
     .rankicon,
-    .proficon{
+    .proficon {
         font-size: 1rem;
-    } 
-
-    #bord{
-        height: 45vh;
-        width: 45vh;
     }
 
-    .arrows{
+    #bord {
+        height: 50vh;
+        width: 50vh;
+    }
+
+    .arrows {
         font-size: 2.3rem;
+    }
+
+    .profilepart,
+    .gamefunctions {
+        height: 8%;
+    }
+
+    .gamebord{
+        height: calc(100% - 16%);
     }
 }
