@@ -124,9 +124,8 @@ async function gameEngine() {
         special = 0;
         playbtn.style.color = "#0015ff"
         playbtn.innerHTML = 'Play Music'
-        games = games +1
         if (playerscore < score) {
-            updateBestScore(score,games)
+            updateBestScore(score)
         }
         if (highscore < score) {
             createData(score, playerName)
