@@ -125,8 +125,7 @@ export function readData() {
 
 export function updateBestScore(val,val1){
     const updated = {
-        ['score']: val,
-        ['games']: val1
+        ['score']: val
     };
 
     update(ref(db, `users/${userid}`), updated)
