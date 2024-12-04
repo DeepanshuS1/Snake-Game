@@ -11,7 +11,6 @@ body {
     background: url(/img/bg.jpg);
     height: 100vh;
     width: 100vw;
-    background-size: 100vw 100vh;
     overflow: hidden;
 }
 
@@ -324,7 +323,6 @@ form button {
     body {
         flex-direction: column;
         height: 96vh;
-        background-size: 100vw 96vh;
     }
 
     .highscore {
