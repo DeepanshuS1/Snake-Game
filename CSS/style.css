@@ -386,7 +386,7 @@ form button {
 @media (max-width: 525px) {
 
     body {
-        height: 94vh;
+        height: 93vh;
     }
 
     .scoredesign,
@@ -418,7 +418,7 @@ form button {
     }
 
     .gamebord {
-        height: 82vh;
+        height: 81vh;
     }
 
     .playMusic,
