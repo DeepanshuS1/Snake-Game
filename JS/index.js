@@ -5,6 +5,7 @@ const foodSound = new Audio('/music/food.mp3')
 const gameOverSound = new Audio('/music/gameover.aac')
 const movieSound = new Audio('/music/move.mp3')
 const musicSound = new Audio('/music/music.mp3')
+let playerName;
 let speed = 5;
 let score = 0;
 let updateScore = 1;
@@ -37,10 +38,9 @@ lbtn.addEventListener('click', (event) => {
 })
 
 export async function updateData() {
-    loader.style.display = 'block';
     try {
         let userData = await fetchData(); 
-        let playerName = userData['username'];
+        playerName = userData['username'];
         bestsbar.innerHTML = 'Best Score:' + userData['score'];
         player.innerHTML = playerName 
     } catch (error) {
@@ -87,9 +87,9 @@ document.addEventListener("keydown", function (event) {
     if (event.key === "F12") {
         event.preventDefault();
     }
-    // if ((event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J")) || (event.ctrlKey && event.key === "U")) {
-    //     event.preventDefault();
-    // }
+    if ((event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J")) || (event.ctrlKey && event.key === "U")) {
+        event.preventDefault();
+    }
     if (event.key === 'T' || event.key === 't') {
         speedUp()
     }

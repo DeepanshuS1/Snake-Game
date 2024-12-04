@@ -88,6 +88,7 @@ let userid;
 onAuthStateChanged(auth, (user) => {
     if (user) {
         register.style.display = 'none'
+        loader.style.display = 'block';
         userid = user.uid
         // Fetch user details from Realtime Database
         updateData()
@@ -108,6 +109,7 @@ export function readData() {
     get(playerdata).then((snapshot) => {
         let data = snapshot.val()
         playerscore = data[userid]['score']
+        bestsbar.innerHTML = 'Best Score:' + playerscore
         games = data[userid]['games']
     })
 }
