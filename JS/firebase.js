@@ -3,6 +3,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebas
 import { getDatabase, set, get, ref, child, update } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js"
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
+import { updateData } from '/JS/index.js';
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -73,34 +75,22 @@ async function login(email, password) {
 }
 
 
-signupbtn.addEventListener('click', (event)=>{
+signupbtn.addEventListener('click', (event) => {
     event.preventDefault()
-    signup(signEmail.value,signpassword.value,username.value);
+    signup(signEmail.value, signpassword.value, username.value);
 })
-loginbtn.addEventListener('click', (event)=>{
+loginbtn.addEventListener('click', (event) => {
     event.preventDefault()
-    login(loginEmail.value,loginpassword.value);
+    login(loginEmail.value, loginpassword.value);
 })
 
-export let playerName;
 let userid;
 onAuthStateChanged(auth, (user) => {
     if (user) {
         register.style.display = 'none'
         userid = user.uid
         // Fetch user details from Realtime Database
-        get(child(ref(db), `users/${user.uid}`))
-            .then(snapshot => {
-                if (snapshot.exists()) {
-                   playerName = snapshot.val()['username']
-                   player.innerHTML = playerName 
-                } else {
-                    console.log('No user data found!');
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching user data:', error);
-            });
+        updateData()
     } else {
         register.style.display = 'flex'
     }
@@ -117,15 +107,38 @@ export function readData() {
     })
     get(playerdata).then((snapshot) => {
         let data = snapshot.val()
-        playerscore  = data[userid]['score']
-        bestsbar.innerHTML = 'Best Score:' + playerscore
-        games  = data[userid]['games']
+        playerscore = data[userid]['score']
+        games = data[userid]['games']
     })
 }
 
-export function updateBestScore(val,val1){
+export async function fetchData() {
+    try {
+        const snapshot = await get(child(ref(db), `users/${userid}`));
+        if (snapshot.exists()) {
+            return snapshot.val(); // Explicitly return the data
+        } else {
+            console.log('No user data found!');
+            return null; // Return null if no data exists
+        }
+    } catch (error) {
+        console.error('Error fetching user data:', error);
+        throw error; // Re-throw the error if needed
+    }
+}
+
+
+export function updateBestScore(val) {
     const updated = {
         ['score']: val
+    };
+
+    update(ref(db, `users/${userid}`), updated)
+}
+
+export function updateGames(val) {
+    const updated = {
+        ['games']: val
     };
 
     update(ref(db, `users/${userid}`), updated)

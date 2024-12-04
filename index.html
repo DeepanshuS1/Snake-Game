@@ -14,7 +14,6 @@
     <div class="profilepart">
         <h1 id="player">User</h1>
         <div id="scorebar" class="scoredesign">Score:0</div>
-        <div id="bestsbar" class="scoredesign"> Best Score:0</div>
         <div class="highscore">
             <i class='bx bx-x bordcross'></i>
             <h1>Global HighScore</h1>
@@ -37,6 +36,7 @@
     </div>
     <div class="gamefunctions">
         <button class="playMusic">Play Music</button>
+        <div id="bestsbar" class="scoredesign"> Best Score:0</div>
         <button class="turbo">Turbo Mode</button>
     </div>
     <div class="register">
@@ -60,6 +60,9 @@
             <input type="password" id="loginpassword" placeholder="Password">
             <button id="loginbtn">Log In</button>
         </form>
+    </div>
+    <div id="loader">
+        Loading....
     </div>
     <script type="module" src="JS/firebase.js"></script>
     <script type="module" src="JS/index.js"></script>

@@ -1,4 +1,4 @@
-import { createData, readData, highscore, playerName, playerscore, games, updateBestScore} from '/JS/firebase.js';
+import { createData, readData, highscore, playerscore, games, updateBestScore, fetchData, updateGames} from '/JS/firebase.js';
 
 let inputDir = { x: 0, y: 0 };
 const foodSound = new Audio('/music/food.mp3')
@@ -35,6 +35,21 @@ lbtn.addEventListener('click', (event) => {
     loginform.style.display = 'flex'
     signupform.style.display = 'none'
 })
+
+export async function updateData() {
+    loader.style.display = 'block';
+    try {
+        let userData = await fetchData(); 
+        let playerName = userData['username'];
+        bestsbar.innerHTML = 'Best Score:' + userData['score'];
+        player.innerHTML = playerName 
+    } catch (error) {
+        console.error('Error in updateData:', error);
+    } finally {
+        loader.style.display = 'none';
+    }
+}
+
 
 // Turbo button Function
 function speedUp() {
@@ -113,10 +128,13 @@ function isCollide(snake) {
     }
 }
 
-async function gameEngine() {
-    // updating High Score
-    await readData()
+// updating data
+setInterval(() => {
+    readData()
+}, 1000);
 
+
+function gameEngine() {
     // updating the snake array
     if (isCollide(snakeArr)) {
         gameOverSound.play()
@@ -124,6 +142,8 @@ async function gameEngine() {
         special = 0;
         playbtn.style.color = "#0015ff"
         playbtn.innerHTML = 'Play Music'
+        let totalgames = games
+        updateGames(totalgames + 1)
         if (playerscore < score) {
             updateBestScore(score)
         }

@@ -214,7 +214,7 @@ body::before {
     z-index: 7;
     border: 4px double #0015ff;
     background-color: white;
-    display: flex;
+    display: none;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
@@ -289,13 +289,22 @@ form button {
     display: none;
 }
 
+#loader {
+    position: fixed;
+    z-index: 10;
+    font-size: 2.5rem;
+    color: red;
+    background-color: white;
+    display: none;
+}
+
 @media (max-width: 1250px) {
-    .highscore{
+    .highscore {
         font-size: .8rem;
     }
-    
+
     #scorebar,
-    #bestsbar{
+    #bestsbar {
         font-size: 1.7rem;
     }
 
@@ -313,7 +322,7 @@ form button {
 
     body {
         flex-direction: column;
-        height: 92vh;
+        height: 96vh;
     }
 
     .highscore {
@@ -367,43 +376,52 @@ form button {
         height: calc(100% - 10vh);
         flex-direction: column;
     }
-    
+
     .buttons {
         display: flex;
     }
 }
 
 @media (max-width: 525px) {
-    
+
+    body {
+        height: 93vh;
+    }
+
     .scoredesign,
     .profilepart>h1 {
-        font-size: .8rem !important;
+        font-size: 1.1rem !important;
     }
-    
+
     .rankicon,
     .proficon {
-        font-size: 1rem;
+        font-size: 1.25rem;
     }
-    
+
     #bord {
         height: 47vh;
         width: 47vh;
     }
-    
+
     .arrows {
         font-size: 3.5rem;
     }
-    
+
     .buttons {
         width: 30rem;
     }
-    
+
     .profilepart,
     .gamefunctions {
         height: 6vh;
     }
-    
+
     .gamebord {
         height: 80vh;
+    }
+
+    .playMusic,
+    .turbo {
+        font-size: .9rem;
     }
 }
