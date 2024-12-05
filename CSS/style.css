@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 body {
@@ -12,7 +13,6 @@ body {
     height: 100vh;
     width: 100vw;
     background-size: 80vw 80vh;
-    overflow: hidden;
 }
 
 body::before {
