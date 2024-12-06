@@ -78,6 +78,7 @@ async function login(email, password) {
 signupbtn.addEventListener('click', (event) => {
     event.preventDefault()
     signup(signEmail.value, signpassword.value, username.value);
+ updateData()
 })
 loginbtn.addEventListener('click', (event) => {
     event.preventDefault()
