@@ -1,4 +1,4 @@
-import { createData, readData, highscore, playerscore, games, updateBestScore, fetchData, updateGames} from '/JS/firebase.js';
+import { createData, readData, highscore, playerscore, games, updateBestScore, fetchData, updateGames } from '/JS/firebase.js';
 
 let inputDir = { x: 0, y: 0 };
 const foodSound = new Audio('/music/food.mp3')
@@ -39,10 +39,10 @@ lbtn.addEventListener('click', (event) => {
 
 export async function updateData() {
     try {
-        let userData = await fetchData(); 
+        let userData = await fetchData();
         playerName = userData['username'];
         bestsbar.innerHTML = 'Best Score:' + userData['score'];
-        player.innerHTML = playerName 
+        player.innerHTML = playerName
     } catch (error) {
         console.error('Error in updateData:', error);
     } finally {
@@ -87,9 +87,9 @@ document.addEventListener("keydown", function (event) {
     if (event.key === "F12") {
         event.preventDefault();
     }
-    if ((event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J")) || (event.ctrlKey && event.key === "U")) {
-        event.preventDefault();
-    }
+    // if ((event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J")) || (event.ctrlKey && event.key === "U")) {
+    //     event.preventDefault();
+    // }
     if (event.key === 'T' || event.key === 't') {
         speedUp()
     }
@@ -123,7 +123,7 @@ function isCollide(snake) {
             return true;
         }
     }
-    if (snake[0].x > 18 || snake[0].x < 0 || snake[0].y > 18 || snake[0].y < 0) {
+    if (snake[0].x > 18 || snake[0].x <= 0 || snake[0].y > 18 || snake[0].y <= 0) {
         return true;
     }
 }
@@ -132,6 +132,27 @@ function isCollide(snake) {
 setInterval(() => {
     readData()
 }, 1000);
+
+let yel;
+let gren;
+
+function specialEffect(check) {
+    if (check) {
+        for (let rule of styleSheet[0].cssRules) {
+            if (rule.selectorText === '.snake') {
+                yel = setInterval(() => {
+                    rule.style.backgroundColor = 'rgb(246, 255, 0)'
+                }, 100);
+                gren = setInterval(() => {
+                    rule.style.backgroundColor = 'rgb(36, 113, 28)'
+                }, 200);
+            }
+        }
+    }else{
+        clearInterval(yel)
+        clearInterval(gren)
+    }
+}
 
 
 function gameEngine() {
@@ -172,12 +193,14 @@ function gameEngine() {
     // when snake eats special food
     if (snakeArr[0].y === specialfood.y && snakeArr[0].x === specialfood.x) {
         foodSound.play()
+        specialEffect(true)
         specialfood = { x: 0, y: 0 }
         updateScore = 2;
         speed = turboOn ? speed : 7;
         specialCount = false;
         special = 0;
-        let endeff = setTimeout(() => {
+        setTimeout(() => {
+            specialEffect(false)
             updateScore = 1;
             speed = turboOn ? speed : 5;
             specialCount = true;
@@ -305,13 +328,13 @@ arrowKeys.forEach(arrow => {
 let leader = document.querySelector('.highscore')
 let crossbtn = document.querySelector('.bordcross')
 
-leaderbord.addEventListener('click', ()=>{
+leaderbord.addEventListener('click', () => {
     leader.classList.toggle('show')
 })
-crossbtn.addEventListener('click', ()=>{
+crossbtn.addEventListener('click', () => {
     leader.classList.toggle('show')
 })
 
-profile.addEventListener('click', ()=>{
+profile.addEventListener('click', () => {
     alert('Feature Coming Soon')
 })
