@@ -327,9 +327,11 @@ arrowKeys.forEach(arrow => {
 
 let leader = document.querySelector('.highscore')
 let crossbtn = document.querySelector('.bordcross')
+let ranks  = document.querySelector('.ranks')
 
 leaderbord.addEventListener('click', () => {
     leader.classList.toggle('show')
+    ranks.style.scale = '1';
 })
 crossbtn.addEventListener('click', () => {
     leader.classList.toggle('show')

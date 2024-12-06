@@ -145,3 +145,25 @@ export function updateGames(val) {
 
     update(ref(db, `users/${userid}`), updated)
 }
+
+let rankbord = document.querySelector('.ranks')
+let players = []
+
+function rankings() {
+    const rankref = ref(db, 'users')
+    get(rankref).then((snapshot) => {
+        let ranks = snapshot.val()
+        for (const key in ranks) {
+            players.push(ranks[key])
+        }
+        players.sort((a,b) => b.score - a.score)
+        players.forEach((player,index) =>{
+            let rank = document.createElement('div')
+            rank.classList.add('headings')
+            rank.innerHTML = `<h4>${index +1}</h4> <h4>${player.username}</h4> <h4>${player.score}</h4>`
+            rankbord.appendChild(rank)
+        })
+    })
+}
+
+rankings()
