@@ -330,6 +330,7 @@ let crossbtn = document.querySelector('.bordcross')
 let ranks  = document.querySelector('.ranks')
 
 leaderbord.addEventListener('click', () => {
+    rankings()
     leader.classList.toggle('show')
     ranks.classList.toggle('show')
 })
