@@ -1,4 +1,4 @@
-import { createData, readData, highscore, playerscore, games, updateBestScore, fetchData, updateGames } from '/JS/firebase.js';
+import { createData, readData, highscore, playerscore, games, updateBestScore, fetchData, updateGames, rankings} from '/JS/firebase.js';
 
 let inputDir = { x: 0, y: 0 };
 const foodSound = new Audio('/music/food.mp3')
