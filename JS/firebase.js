@@ -56,7 +56,7 @@ async function signup(email, password, username) {
             score: 0,
             games: 0
         });
-
+         updateData()
         alert('Signup successful!');
     } catch (error) {
         console.error('Error during signup:', error.message);
@@ -78,7 +78,6 @@ async function login(email, password) {
 signupbtn.addEventListener('click', (event) => {
     event.preventDefault()
     signup(signEmail.value, signpassword.value, username.value);
- updateData()
 })
 loginbtn.addEventListener('click', (event) => {
     event.preventDefault()
