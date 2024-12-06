@@ -149,7 +149,7 @@ export function updateGames(val) {
 let rankbord = document.querySelector('.ranks')
 let players = []
 
-function rankings() {
+export function rankings() {
     const rankref = ref(db, 'users')
     get(rankref).then((snapshot) => {
         let ranks = snapshot.val()
