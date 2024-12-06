@@ -87,9 +87,9 @@ document.addEventListener("keydown", function (event) {
     if (event.key === "F12") {
         event.preventDefault();
     }
-    // if ((event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J")) || (event.ctrlKey && event.key === "U")) {
-    //     event.preventDefault();
-    // }
+    if ((event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J")) || (event.ctrlKey && event.key === "U")) {
+        event.preventDefault();
+    }
     if (event.key === 'T' || event.key === 't') {
         speedUp()
     }
@@ -331,7 +331,7 @@ let ranks  = document.querySelector('.ranks')
 
 leaderbord.addEventListener('click', () => {
     leader.classList.toggle('show')
-    ranks.style.scale = '1';
+    ranks.classList.toggle('show')
 })
 crossbtn.addEventListener('click', () => {
     leader.classList.toggle('show')
