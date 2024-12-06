@@ -165,5 +165,3 @@ function rankings() {
         })
     })
 }
-
-rankings()
