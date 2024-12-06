@@ -335,6 +335,7 @@ leaderbord.addEventListener('click', () => {
 })
 crossbtn.addEventListener('click', () => {
     leader.classList.toggle('show')
+    ranks.classList.toggle('show')
 })
 
 profile.addEventListener('click', () => {
