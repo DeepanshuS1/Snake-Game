@@ -2,10 +2,14 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    /* overflow: hidden; */
+}
+
+html{
+    overflow: hidden;
 }
 
 body {
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -380,12 +384,12 @@ form button {
         width: 70vw;
         max-height: 70vh;
         top: 50%;
-        transform: translate(0,-50%);
+        transform: translate(0, -50%);
     }
-    
-    .ranks{
+
+    .ranks {
         position: static;
-        transform: translate(0,0);
+        transform: translate(0, 0);
         width: 100%;
         font-size: 1.1rem;
     }
@@ -457,7 +461,7 @@ form button {
         width: 47vh;
     }
 
-    .highscore{
+    .highscore {
         width: 90vw;
     }
 
