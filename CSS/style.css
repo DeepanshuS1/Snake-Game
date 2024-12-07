@@ -2,7 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 body {
@@ -310,8 +310,9 @@ form button {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    overflow: auto;
+    overflow-y: scroll !important;
     width: 30rem;
+    height: 80%;
     background-color: #001f3f;
     padding: 1rem;
     border: white 3px solid;
