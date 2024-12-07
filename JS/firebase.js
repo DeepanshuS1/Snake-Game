@@ -56,7 +56,7 @@ async function signup(email, password, username) {
             score: 0,
             games: 0
         });
-         updateData()
+        updateData()
         alert('Signup successful!');
     } catch (error) {
         console.error('Error during signup:', error.message);
@@ -147,20 +147,27 @@ export function updateGames(val) {
 }
 
 let rankbord = document.querySelector('.ranks')
-let players = []
 
 export function rankings() {
+    rankbord.innerHTML = '  '
     const rankref = ref(db, 'users')
+    let heading = document.createElement('div')
+    heading.classList.add('headings')
+    heading.innerHTML = `<h3>Rank</h3>
+    <h3>Name</h3>
+    <h3>Score</h3>`
+    rankbord.appendChild(heading);
     get(rankref).then((snapshot) => {
+        let players = []
         let ranks = snapshot.val()
         for (const key in ranks) {
             players.push(ranks[key])
         }
-        players.sort((a,b) => b.score - a.score)
-        players.forEach((player,index) =>{
+        players.sort((a, b) => b.score - a.score)
+        players.forEach((player, index) => {
             let rank = document.createElement('div')
             rank.classList.add('headings')
-            rank.innerHTML = `<h4>${index +1}</h4> <h4>${player.username}</h4> <h4>${player.score}</h4>`
+            rank.innerHTML = `<h4>${index + 1}</h4> <h4>${player.username}</h4> <h4>${player.score}</h4>`
             rankbord.appendChild(rank)
         })
     })
