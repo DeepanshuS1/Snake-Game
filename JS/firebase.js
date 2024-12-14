@@ -165,6 +165,9 @@ export function rankings() {
         }
         players.sort((a, b) => b.score - a.score)
         players.forEach((player, index) => {
+            if(player.score == 0){
+                return
+            }
             let rank = document.createElement('div')
             rank.classList.add('headings')
             rank.innerHTML = `<h4>${index + 1}</h4> <h4>${player.username}</h4> <h4>${player.score}</h4>`
